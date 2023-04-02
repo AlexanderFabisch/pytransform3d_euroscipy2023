@@ -67,8 +67,13 @@ slide
 \begin{center}
 {\usebeamercolor[fg]{title}\usebeamerfont{title}Transformations in Three Dimensions\par}
 \vfill
+
+\setbeamercolor{boxcolor}{bg=blue!5}
+\begin{beamercolorbox}[sep=0.5em,center]{boxcolor}
 \textbf{Alexander Fabisch}\\
 DFKI GmbH, Robotics Innovation Center
+\end{beamercolorbox}
+
 \vfill
 \includegraphics[width=\textwidth]{images/transformation_modeling}
 \vfill
@@ -136,8 +141,8 @@ r_{31} & r_{32} & r_{33} & t_3\\
 \end{frame}
 
 \begin{frame}{Exponential Coordinates}
-\setbeamercolor{lightgreen}{bg=blue!10}
-\begin{beamercolorbox}[wd=\textwidth,sep=1em]{lightgreen}
+\setbeamercolor{boxcolor}{bg=blue!10}
+\begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
 Screw axis: $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \times \hat{\boldsymbol{s}} + h \hat{\boldsymbol{s}}\end{array} \right] = \textcolor{red}{\mathcal{S}} \in \mathbb{R}^6$
 \end{beamercolorbox}
 
@@ -199,6 +204,132 @@ tm.add_transform(
 
 ee2object = tm.get_transform(
     "end-effector", "object")
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Features of pytransform3d}
+\begin{itemize}
+\item operations for most common representations of rotation / orientation and
+  translation / position
+\item conversions between those representations
+\item clear documentation of conventions
+\item tight coupling with matplotlib to quickly visualize (or animate)
+  transformations
+\item the TransformManager which organizes complex chains of transformations
+\item the UrdfTransformManager which is able to load transformations from URDF
+  files
+\item a matplotlib-like interface to Open3D’s visualizer to display geometries and
+  transformations
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Imitation Learning}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\includegraphics[width=\textwidth]{images/movement_primitives_cart_dmp_ur5}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{lstlisting}[language=Python]
+import pytransform3d.visualizer as pv
+
+
+fig = pv.figure()
+fig.plot_transform(s=0.3)
+
+fig.plot_graph(
+    kin.tm, "ur5_base_link",
+    show_collision_objects=True,
+    show_frames=True, s=0.1,
+    whitelist=["ur5_base_link",
+               "ur5_tool0"])
+
+fig.plot_transform(ee2base_start)
+fig.plot_transform(ee2base_end)
+
+pv.Trajectory(trajectory
+    ).add_artist(fig)
+
+fig.view_init()
+fig.show()
+\end{lstlisting}
+{\tiny Library: \url{https://github.com/dfki-ric/movement_primitives}}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\includegraphics[width=\textwidth]{images/embodiment_record}
+\includegraphics[width=\textwidth]{images/embodiment_mia}
+\end{column}
+\begin{column}{0.6\textwidth}
+\includegraphics[width=\textwidth]{images/embodiment_dataset}
+\end{column}
+\end{columns}
+{\small \url{https://github.com/dfki-ric/hand_embodiment}}
+\end{frame}
+
+\begin{frame}[fragile]{Imitation Learning}
+\includegraphics[width=\textwidth]{images/embodiment_graph}
+\begin{lstlisting}[language=Python]
+from pytransform3d.urdf import UrdfTransformManager
+tm = UrdfTransformManager()
+with open("robot.urdf", "r") as f:
+    robot_urdf = f.read()
+tm.load_urdf(robot_urdf)
+tm.write_png(graph_filename)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Collision Detection}
+\includegraphics[width=0.7\textwidth]{images/collision_detection}
+\end{frame}
+
+\begin{frame}[fragile]{Collision Detection}
+\begin{lstlisting}[language=Python]
+from pytransform3d.urdf import UrdfTransformManager
+from distance3d import broad_phase
+
+
+tm = UrdfTransformManager()
+filename = os.path.join(data_dir, "robot.urdf")
+with open(filename, "r") as f:
+    robot_urdf = f.read()
+tm.load_urdf(robot_urdf, mesh_path=data_dir)
+joint_names = ["joint%d" % i for i in range(1, 7)]
+for joint_name in joint_names:
+    tm.set_joint(joint_name, 0.7)
+
+robot_bvh = broad_phase.BoundingVolumeHierarchy(
+    tm, "robot_arm")
+robot_bvh.fill_tree_with_colliders(tm, make_artists=True)
+\end{lstlisting}
+{\scriptsize Library: \url{https://github.com/AlexanderFabisch/distance3d}}
+\end{frame}
+
+\begin{frame}[fragile]{Concatenation of Uncertain Transforms}
+\begin{columns}
+\begin{column}{0.47\textwidth}
+\includegraphics[width=\textwidth]{images/state_estimation}
+\end{column}
+\begin{column}{0.53\textwidth}
+\begin{lstlisting}[language=Python]
+import pytransform3d.uncertainty as pu
+# estimated pose
+T_est = ...
+# covariance, exp. coordinates
+cov_est = ...
+# pose offset
+T_vel = ...
+# corresponding covariance
+cov = ...
+T_est, cov_est = \
+    pu.concat_uncertain_transforms(
+        T_est, cov_est,
+        T_vel, cov)
 \end{lstlisting}
 \end{column}
 \end{columns}

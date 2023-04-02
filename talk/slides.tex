@@ -1,0 +1,207 @@
+\pdfminorversion=7
+\documentclass[14pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{newtxmath}
+% \usepackage[
+% bibstyle=authoryear, % alphabetical
+% citestyle=authoryear, % alphabetical
+% backend=biber,
+% maxnames=2,
+% maxbibnames=99]{biblatex}
+% \addbibresource{literature.bib}
+% \AtBeginBibliography{\tiny}
+% \SetCiteCommand{\parencite}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{pifont}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage[mathcal]{euscript}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{cancel}
+
+\beamertemplatenavigationsymbolsempty
+\setbeamerfont{page number in head/foot}{size=\large}
+\setbeamertemplate{footline}{%
+\hfill%
+\usebeamercolor[fg]{page number in head/foot}%
+slide
+\usebeamerfont{page number in head/foot}%
+\insertframenumber%
+\kern2pt\vskip1pt%
+}
+
+\definecolor{backcolor}{rgb}{0.2,0.2,0.2}
+\definecolor{keycolor}{rgb}{0.8,0.471,0.196}
+\definecolor{codecolor}{rgb}{0.9,0.9,0.9}
+\definecolor{stringcolor}{rgb}{0.416,0.718,0.349}
+\definecolor{commentcolor}{rgb}{0.5,0.5,0.5}
+\lstdefinestyle{pythonstyle}{
+    backgroundcolor=\color{backcolor},
+    keywordstyle=\color{keycolor},
+    commentstyle=\color{commentcolor},
+    %numberstyle=\tiny\color{codegray},
+    stringstyle=\color{stringcolor},
+    basicstyle=\ttfamily\scriptsize\color{codecolor},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false
+}
+
+\lstset{style=pythonstyle}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+\begin{center}
+{\usebeamercolor[fg]{title}\usebeamerfont{title}Transformations in Three Dimensions\par}
+\vfill
+\textbf{Alexander Fabisch}\\
+DFKI GmbH, Robotics Innovation Center
+\vfill
+\includegraphics[width=\textwidth]{images/transformation_modeling}
+\vfill
+\url{https://github.com/dfki-ric/pytransform3d}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\includegraphics[width=\textwidth]{images/introduction}
+\end{frame}
+
+\begin{frame}{Frames}
+A \textit{coordinate reference} \textbf{frame} in 3D Euclidean space is defined by an origin (position) and 3 orthogonal basis vectors (orientation) and it is attached to a rigid body.
+
+\vskip 1cm
+
+\includegraphics[height=1.9cm]{images/conventions_camera}
+\includegraphics[height=1.9cm]{images/conventions_plane}
+\includegraphics[height=1.9cm]{images/conventions_ship}
+\end{frame}
+
+\begin{frame}{SO(3)}
+The group of all rotations in the 3D Cartesian space is called SO(3) (SO: special orthogonal group). It is typically represented by 3D rotations matrices.
+
+\vfill
+
+\includegraphics[width=7cm]{images/rotations}
+\end{frame}
+
+\begin{frame}{SE(3)}
+The group of all proper rigid transformations (rototranslations) in the 3D Cartesian space is SE(3) (SE: special Euclidean group).
+
+\vfill
+
+\includegraphics[width=7cm]{images/transformations}
+\end{frame}
+
+\begin{frame}{Transformation Matrices}
+\[
+SE(3) = \biggl\{ \boldsymbol{T} = \left(
+\begin{array}{cc}
+\boldsymbol{R} & \boldsymbol{t}\\
+\boldsymbol{0} & 1
+\end{array}
+\right) \in \mathbb{R}^{4 \times 4}
+| \boldsymbol{R} \in SO(3), \boldsymbol{t} \in \mathbb{R}^3 \biggr\}
+\]
+
+\[
+\boldsymbol T =
+\left( \begin{array}{cc}
+    \boldsymbol R & \boldsymbol t\\
+    \boldsymbol 0 & 1\\
+\end{array} \right)
+=
+\left(
+\begin{matrix}
+r_{11} & r_{12} & r_{13} & t_1\\
+r_{21} & r_{22} & r_{23} & t_2\\
+r_{31} & r_{32} & r_{33} & t_3\\
+0 & 0 & 0 & 1\\
+\end{matrix}
+\right)
+\]
+\end{frame}
+
+\begin{frame}{Exponential Coordinates}
+\setbeamercolor{lightgreen}{bg=blue!10}
+\begin{beamercolorbox}[wd=\textwidth,sep=1em]{lightgreen}
+Screw axis: $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \times \hat{\boldsymbol{s}} + h \hat{\boldsymbol{s}}\end{array} \right] = \textcolor{red}{\mathcal{S}} \in \mathbb{R}^6$
+\end{beamercolorbox}
+
+\vfill
+
+\hfill\includegraphics{images/screw_axis}
+
+\vfill
+
+\begin{beamercolorbox}[wd=\textwidth,sep=1em]{lightgreen}
+Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T} =
+\left( \begin{array}{cc}
+\boldsymbol R & \boldsymbol t\\
+\boldsymbol 0 & 1\\
+\end{array} \right)
+\in SO(3)$
+\end{beamercolorbox}
+\end{frame}
+
+\begin{frame}[plain,fragile]{Modeling Transformations}
+\textbf{Mathematical notation:}
+$\boldsymbol{T}_{BA}$ for transformation \textit{from frame} \texttt{A} \textit{to frame}
+\texttt{B}. In concatenation, read from right to left:
+
+\[
+\boldsymbol{T}_{CB} \boldsymbol{T}_{BA} = \boldsymbol{T}_{C\cancel{B}} \boldsymbol{T}_{\cancel{B}A} = \boldsymbol{T}_{CA}.
+\]
+
+\vfill
+
+\textbf{In code} we should prefer the notation \texttt{A2B}
+for a transformation \textit{from frame} \texttt{A} \textit{to frame} \texttt{B}:
+
+\begin{lstlisting}[language=Python]
+from pytransform3d.transformations import concat
+A2B = ...  # transformation from frame A to frame B
+B2C = ...  # transformation from frame B to frame C
+A2C = concat(A2B, B2C)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[plain,fragile]{Graphs of Transformations}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\includegraphics[width=\textwidth]{images/transform_graph}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{lstlisting}[language=Python]
+from pytransform3d.transform_manager import TransformManager
+
+
+tm = TransformManager()
+tm.add_transform(
+    "end-effector", "robot", ee2robot)
+tm.add_transform(
+    "camera", "robot", cam2robot)
+tm.add_transform(
+    "object", "camera", object2cam)
+
+ee2object = tm.get_transform(
+    "end-effector", "object")
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\end{document}

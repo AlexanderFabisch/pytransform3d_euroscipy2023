@@ -95,20 +95,24 @@ A \textit{coordinate reference} \textbf{frame} in 3D Euclidean space is defined 
 \includegraphics[height=1.9cm]{images/conventions_ship}
 \end{frame}
 
-\begin{frame}{SO(3)}
-The group of all rotations in the 3D Cartesian space is called SO(3) (SO: special orthogonal group). It is typically represented by 3D rotations matrices.
+\begin{frame}{SO(3) (SO: special orthogonal group)}
+The group of all rotations in the 3D Cartesian space is called SO(3). It is typically represented by 3D rotations matrices.
 
 \vfill
 
-\includegraphics[width=7cm]{images/rotations}
+\begin{center}
+\includegraphics[width=9cm]{images/rotations}
+\end{center}
 \end{frame}
 
-\begin{frame}{SE(3)}
-The group of all proper rigid transformations (rototranslations) in the 3D Cartesian space is SE(3) (SE: special Euclidean group).
+\begin{frame}{SE(3) (SE: special Euclidean group)}
+The group of all proper rigid transformations (rototranslations) in the 3D Cartesian space is SE(3).
 
 \vfill
 
+\begin{center}
 \includegraphics[width=7cm]{images/transformations}
+\end{center}
 \end{frame}
 
 \begin{frame}{Transformation Matrices}
@@ -207,6 +211,9 @@ ee2object = tm.get_transform(
 \end{lstlisting}
 \end{column}
 \end{columns}
+
+Examples: kinematic structures of robots (and other articulated bodies),
+sequences of states, trajectories
 \end{frame}
 
 \begin{frame}{Features of pytransform3d}
@@ -333,6 +340,7 @@ T_est, cov_est = \
 \end{lstlisting}
 \end{column}
 \end{columns}
+The \textbf{banana distribution} is Gaussian in exponential coordinates.
 \end{frame}
 
 \end{document}

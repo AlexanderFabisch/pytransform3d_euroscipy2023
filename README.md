@@ -18,7 +18,7 @@ manage. In this talk I will give a brief introduction to the topic and present
 the library pytransform3d as a set of tools that can help you to tame the
 complexity. Applications in robotics (imitation learning, collision detection,
 state estimation, kinematics, dynamics) will be the focus of this talk, even
-though presented solutions are also applicable to other fields.
+though presented solutions are useful in various fields beyond robotics.
 
 
 ## Description

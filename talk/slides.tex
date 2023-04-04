@@ -123,14 +123,9 @@ We will use RGB lines to indicate basis vectors.
 \begin{columns}
 \begin{column}{0.4\textwidth}
 \makebox(150,200){
-\only<1>{%
-\includegraphics[width=150pt]{images/movement_primitives_cart_dmp_ur5}%
-}%
-\only<2>{%
 \movie[loop,autostart,poster,width=150pt]
 {\makebox(150,165){}}
-{videos/movement_primitive.mp4}}%
-}
+{videos/movement_primitive.mp4}}
 \end{column}
 \begin{column}{0.6\textwidth}
 \begin{itemize}
@@ -157,10 +152,10 @@ We will use RGB lines to indicate basis vectors.
 
 \begin{frame}[fragile]{Imitation Learning}
 \begin{columns}
-\begin{column}{0.4\textwidth}
+\begin{column}{0.3\textwidth}
 \includegraphics[width=\textwidth]{images/movement_primitives_cart_dmp_ur5}
 \end{column}
-\begin{column}{0.6\textwidth}
+\begin{column}{0.7\textwidth}
 Common problems
 \begin{itemize}
 \item Rotation matrices have 6 constraints that are not easy to enforce
@@ -168,8 +163,7 @@ Common problems
 \item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q = -q$
 \begin{lstlisting}[language=Python]
 from pytransform3d.rotations import pick_closest_quaternion
-q1 = pick_closest_quaternion(
-    q1, q2)
+q1 = pick_closest_quaternion(q1, q2)
 \end{lstlisting}
 \end{itemize}
 \end{column}
@@ -208,6 +202,13 @@ fig.show()
 \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]{Imitation Learning}
+\makebox(300,200){
+\movie[loop,autostart,poster,width=150pt]
+{\makebox(200,200){}}
+{videos/dual_arm.mp4}}
+\end{frame}
+
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
 \begin{center}\includegraphics[width=0.4\textwidth]{images/state_estimation}\end{center}
 \vskip -0.4cm
@@ -244,7 +245,6 @@ SE(3) = \biggl\{ \boldsymbol{T} = \left(
 \]
 
 \[
-\boldsymbol T =
 \left( \begin{array}{cc}
     \boldsymbol R & \boldsymbol t\\
     \boldsymbol 0 & 1\\
@@ -274,11 +274,12 @@ Screw axis: $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \time
 \vfill
 
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
-Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T} =
-\left( \begin{array}{cc}
-\boldsymbol R & \boldsymbol t\\
-\boldsymbol 0 & 1\\
-\end{array} \right)
+Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T}
+% =
+% \left( \begin{array}{cc}
+% \boldsymbol R & \boldsymbol t\\
+% \boldsymbol 0 & 1\\
+% \end{array} \right)
 \in SO(3)$
 \end{beamercolorbox}
 \end{frame}
@@ -318,14 +319,10 @@ T_est, cov_est = pu.concat_globally_uncertain_transforms(
 \end{column}
 \begin{column}{0.6\textwidth}
 \makebox(165,160){
-\only<1>{%
-\includegraphics[width=165pt]{images/embodiment_mia}%
-}%
-\only<2>{%
+%\includegraphics[width=165pt]{images/embodiment_mia}%
 \movie[loop,autostart,poster,width=165pt]
 {\makebox(165,160){}}
 {videos/embodiment.mp4}}%
-}
 \end{column}
 \end{columns}
 {\small \url{https://github.com/dfki-ric/hand_embodiment}}
@@ -394,15 +391,10 @@ tm.write_png(graph_filename)
 \end{frame}
 
 \begin{frame}{Collision Detection}
-\makebox(305,90){
-\only<1>{%
-\includegraphics[height=186pt]{images/collision_detection}%
-}%
-\only<2>{%
+\makebox(305,185){
 \movie[loop,autostart,poster,width=160pt]
-{\makebox(160,186){}}
-{videos/collision_detection.mp4}}%
-}
+{\makebox(160,185){}}
+{videos/collision_detection.mp4}}
 \end{frame}
 
 \begin{frame}[fragile]{Collision Detection}

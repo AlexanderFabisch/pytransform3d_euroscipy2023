@@ -16,9 +16,10 @@ Rigid transformation in 3D are complicated due to the multitude of different
 conventions and because they often form complex graphs that are difficult to
 manage. In this talk I will give a brief introduction to the topic and present
 the library pytransform3d as a set of tools that can help you to tame the
-complexity. Applications in robotics (imitation learning, collision detection,
-state estimation, kinematics, dynamics) will be the focus of this talk, even
-though presented solutions are useful in various fields beyond robotics.
+complexity. Throughout the talk I will use examples from robotics (imitation
+learning, collision detection, state estimation, kinematics, dynamics) to
+motivate the discussed features, even though presented solutions are useful
+beyond robotics.
 
 
 ## Description

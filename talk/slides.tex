@@ -135,7 +135,9 @@ We will use RGB lines to indicate basis vectors.
 \end{frame}
 
 \begin{frame}{SO(3) (SO: special orthogonal group)}
-The group of all rotations in the 3D Cartesian space is called SO(3). It is typically represented by 3D rotations matrices.
+--- group of all rotations in 3D
+
+--- represented by 3D rotation matrices
 
 \vfill
 
@@ -154,7 +156,7 @@ Common problems
 \begin{itemize}
 \item Rotation matrices have 6 constraints that are not easy to enforce
 \item Minimal representations $\in \mathbb{R}^3$ have singularities
-\item Quaternions have an ambiguity ($q = -q$, $q \in \mathbb{S}^3$)
+\item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q = -q$
 \begin{lstlisting}[language=Python]
 from pytransform3d.rotations import pick_closest_quaternion
 q1 = pick_closest_quaternion(
@@ -165,7 +167,7 @@ q1 = pick_closest_quaternion(
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Imitation Learning}
+\begin{frame}[fragile]{Visualizer}
 \begin{columns}
 \begin{column}{0.4\textwidth}
 \includegraphics[width=\textwidth]{images/movement_primitives_cart_dmp_ur5}
@@ -210,7 +212,9 @@ fig.show()
 \end{frame}
 
 \begin{frame}{SE(3) (SE: special Euclidean group)}
-The group of all proper rigid transformations (rototranslations) in the 3D Cartesian space is SE(3).
+--- group of all proper rigid transformations in 3D
+
+--- represented by transformation matrices
 
 \vfill
 
@@ -271,27 +275,30 @@ Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T} =
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
-\begin{lstlisting}[language=Python]
-import pytransform3d.uncertainty as pu
-# estimated pose (transformation matrix)
-T_est = ...
-# covariance in exponential coordinates
-cov_est = ...
-# offset (transformation matrix)
-T_vel = ...
-# covariance in exponential coordinates
-cov = ...
-T_est, cov_est = \
-    pu.concat_globally_uncertain_transforms(
-        T_est, cov_est,
-        T_vel, cov)
-\end{lstlisting}
+\begin{center}\includegraphics[width=0.4\textwidth]{images/state_estimation}\end{center}
+\vskip -0.4cm
+The \textbf{banana distribution} is Gaussian in exponential coordinates:
+\[
+\boldsymbol{T} = Exp(\mathcal{S}\theta) \overline{\boldsymbol{T}},\quad \textrm{with} \quad \mathcal{S}\theta \sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{\Sigma}_{6 \times 6}\right)
+\]
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
-\begin{center}\includegraphics[width=0.4\textwidth]{images/state_estimation}\end{center}
-\vskip -0.4cm
-The \textbf{banana distribution} is Gaussian in exponential coordinates
+\begin{lstlisting}[language=Python]
+import pytransform3d.uncertainty as pu
+# estimated mean pose (transformation matrix)
+T_est = ...
+# covariance in exponential coordinates
+cov_est = ...
+# mean offset (transformation matrix)
+T_vel = ...
+# covariance in exponential coordinates
+cov_vel = ...
+
+T_est, cov_est = pu.concat_globally_uncertain_transforms(
+        T_est, cov_est,
+        T_vel, cov_vel)
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{Transfer of Motions to Robotic Hand}

@@ -28,9 +28,8 @@ website. Please write between 400 and 50000 characters.*
 
 This talk focuses on rotation and translation, that is, rigid transformations,
 in three  dimensions.
-There are various representations of these. Different software often uses
-different conventions, and we often combine several software components with
-different conventions. Furthermore, we usually combine multiple
+There are various representations of these. We often combine several software
+components with different conventions. Furthermore, we usually combine multiple
 transformations that form complex graphs of transformations, and we are often
 interested in transformations that are not directly available, but can be
 computed from a combination of multiple transformations. Both problems can be
@@ -59,6 +58,8 @@ examples from robotics for illustration, for example,
 * dynamics - simulation of a robot's forward dynamics
 * collision detection - between a robot arm and it's environment
 * state estimation - estimation of a robot's location and its uncertainty
+
+There are several pitfalls that we will discuss as well.
 
 
 ## Notes

@@ -6,6 +6,20 @@
 
 **Track:** Scientific Applications
 
+**Abstract as a tweet:** Introduction to 3D transformations in Python illustrated with problems in robotics
+
+**Category [Scientific Applications]:** Robotics & IoT
+
+**Expected audience expertise (Domain):** none
+
+**Expected audience expertise (Python):** some
+
+**Talk submissions only: Would you be prepared to do a poster as fallback?** - yes
+
+**Public link to supporting material:** --
+
+**Project Homepage / Git:** https://github.com/dfki-ric/pytransform3d
+
 
 ## Abstract
 
@@ -17,9 +31,8 @@ conventions and because they often form complex graphs that are difficult to
 manage. In this talk I will give a brief introduction to the topic and present
 the library pytransform3d as a set of tools that can help you to tame the
 complexity. Throughout the talk I will use examples from robotics (imitation
-learning, collision detection, state estimation, kinematics, dynamics) to
-motivate the discussed features, even though presented solutions are useful
-beyond robotics.
+learning, collision detection, state estimation, kinematics) to motivate the
+discussed features, even though presented solutions are useful beyond robotics.
 
 
 ## Description
@@ -56,7 +69,6 @@ examples from robotics for illustration, for example,
 
 * imitation learning - learning robotic motion from human demonstration
 * kinematics - translation of a human hand motion to a robotic hand
-* dynamics - simulation of a robot's forward dynamics
 * collision detection - between a robot arm and it's environment
 * state estimation - estimation of a robot's location and its uncertainty
 
@@ -68,3 +80,4 @@ There are several pitfalls that we will discuss as well.
 *These notes are meant for the organiser and won't be made public.*
 
 --
+

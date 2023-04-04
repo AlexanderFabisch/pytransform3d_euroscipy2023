@@ -1,0 +1,1 @@
+ffmpeg -i collision_detection_original.mp4 -vcodec libx265 -crf 28 collision_detection.mp4

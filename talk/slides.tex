@@ -26,6 +26,7 @@
 \usepackage{geometry}
 \usepackage{listings}
 \usepackage{cancel}
+\usepackage{multimedia} % videos
 
 \beamertemplatenavigationsymbolsempty
 \setbeamerfont{page number in head/foot}{size=\large}
@@ -377,7 +378,15 @@ tm.write_png(graph_filename)
 \end{frame}
 
 \begin{frame}{Collision Detection}
-\includegraphics[width=0.7\textwidth]{images/collision_detection}
+\makebox(305,90){
+\only<1>{%
+\includegraphics[height=186pt]{images/collision_detection}%
+}%
+\only<2>{%
+\movie[loop,autostart,poster,width=160pt]
+{\makebox(160,186){}}
+{videos/collision_detection.mp4}}%
+}
 \end{frame}
 
 \begin{frame}[fragile]{Collision Detection}

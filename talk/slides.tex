@@ -5,15 +5,14 @@
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{newtxmath}
-% \usepackage[
-% bibstyle=authoryear, % alphabetical
-% citestyle=authoryear, % alphabetical
-% backend=biber,
-% maxnames=2,
-% maxbibnames=99]{biblatex}
-% \addbibresource{literature.bib}
-% \AtBeginBibliography{\tiny}
-% \SetCiteCommand{\parencite}
+\usepackage[
+bibstyle=authoryear, % alphabetical
+citestyle=authoryear, % alphabetical
+backend=biber,
+maxnames=2,
+maxbibnames=99]{biblatex}
+\addbibresource{literature.bib}
+\AtBeginBibliography{\tiny}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{url}
@@ -165,6 +164,7 @@ Common problems
 from pytransform3d.rotations import pick_closest_quaternion
 q1 = pick_closest_quaternion(q1, q2)
 \end{lstlisting}
+\parencite{Ude2014}
 \end{itemize}
 \end{column}
 \end{columns}
@@ -282,6 +282,8 @@ Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T}
 % \end{array} \right)
 \in SO(3)$
 \end{beamercolorbox}
+
+\parencite{Lynch2017}
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
@@ -291,6 +293,7 @@ The \textbf{banana distribution} is Gaussian in exponential coordinates:
 \[
 \boldsymbol{T} = Exp(\mathcal{S}\theta) \overline{\boldsymbol{T}},\quad \textrm{with} \quad \mathcal{S}\theta \sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{\Sigma}_{6 \times 6}\right)
 \]
+\parencite{Long2012,Barfoot2014}
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
@@ -332,7 +335,7 @@ T_est, cov_est = pu.concat_globally_uncertain_transforms(
 {videos/embodiment.mp4}}%
 \end{column}
 \end{columns}
-{\small \url{https://github.com/dfki-ric/hand_embodiment}}
+{\small \url{https://github.com/dfki-ric/hand_embodiment}, \parencite{Fabisch2022}}
 \end{frame}
 
 \begin{frame}[plain,fragile]{Modeling Transformations}
@@ -402,6 +405,10 @@ tm.write_png(graph_filename)
 \movie[loop,autostart,poster,width=160pt]
 {\makebox(160,185){}}
 {videos/collision_detection.mp4}}
+\begin{itemize}
+\item Broad phase collision detection with AABBs
+\item GJK algorithm \parencite{Gilbert1988}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Collision Detection}
@@ -430,12 +437,15 @@ robot_bvh.fill_tree_with_colliders(robot_tree)
 
 \begin{frame}{pytransform3d}
 \begin{itemize}
-\item git: \url{https://github.com/dfki-ric/pytransform3d}
-\item documentation: \url{https://dfki-ric.github.io/pytransform3d}
-\item citation:
-
-Fabisch, (2019). pytransform3d: 3D Transformations for Python. Journal of Open Source Software, 4(33), 1159.
+\item git:\\{\small \url{https://github.com/dfki-ric/pytransform3d}}
+\item documentation:\\{\small \url{https://dfki-ric.github.io/pytransform3d}}
+\item citation:\\
+\textcite{Fabisch2019}. \textbf{pytransform3d: 3D Transformations for Python}. Journal of Open Source Software, 4(33), 1159.
 \end{itemize}
+\end{frame}
+
+\begin{frame}[t,allowframebreaks]{Literature}
+\printbibliography[heading=none]
 \end{frame}
 
 \end{document}

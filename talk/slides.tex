@@ -170,6 +170,20 @@ q1 = pick_closest_quaternion(q1, q2)
 \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]{Quaternions - Pitfalls}
+\begin{itemize}
+\item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q = -q$
+\begin{lstlisting}[language=Python]
+from pytransform3d.rotations import pick_closest_quaternion
+q1 = pick_closest_quaternion(q1, q2)
+\end{lstlisting}
+\item 2 conventions: \textbf{Hamilton} vs. JPL\\\parencite{Sommer2018}
+\item Often stored as 4 numbers, e.g., $(0, 1, 0, 0)$
+-- \textbf{scalar first} $(\textcolor{red}{w}, x, y, z)$ or last
+$(x, y, z, \textcolor{red}{w})$
+\end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]{Visualizer}
 \begin{columns}
 \begin{column}{0.4\textwidth}

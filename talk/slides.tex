@@ -187,17 +187,17 @@ Common problems
 \item Rotation matrices have 6 constraints that are not easy to enforce
 \item Minimal representations $\in \mathbb{R}^3$ have singularities
 \item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q = -q$
-\begin{lstlisting}[language=Python]
-from pytransform3d.rotations import pick_closest_quaternion
-q1 = pick_closest_quaternion(q1, q2)
-\end{lstlisting}
-\parencite{Ude2014}
 \end{itemize}
 \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Quaternions - Pitfalls}
+We want to use quaternions \parencite{Ude2014}
+
+\vskip 1cm
+
+Be careful:
 \begin{itemize}
 \item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q = -q$
 \begin{lstlisting}[language=Python]
@@ -205,7 +205,7 @@ from pytransform3d.rotations import pick_closest_quaternion
 q1 = pick_closest_quaternion(q1, q2)
 \end{lstlisting}
 \item 2 conventions: \textbf{Hamilton} vs. JPL\\\parencite{Sommer2018}
-\item Often stored as 4 numbers, e.g., $(0, 1, 0, 0)$
+\item 4 numbers, e.g., $(0, 1, 0, 0)$\\
 -- \textbf{scalar first} $(\textcolor{red}{w}, x, y, z)$ or last
 $(x, y, z, \textcolor{red}{w})$
 \end{itemize}
@@ -213,10 +213,10 @@ $(x, y, z, \textcolor{red}{w})$
 
 \begin{frame}[fragile]{Visualizer}
 \begin{columns}
-\begin{column}{0.4\textwidth}
+\begin{column}{0.3\textwidth}
 \includegraphics[width=\textwidth]{images/movement_primitives_cart_dmp_ur5}
 \end{column}
-\begin{column}{0.6\textwidth}
+\begin{column}{0.7\textwidth}
 \begin{lstlisting}[language=Python]
 import pytransform3d.visualizer as pv
 
@@ -233,8 +233,7 @@ fig.plot_graph(
 fig.plot_transform(ee2base_start)
 fig.plot_transform(ee2base_end)
 
-pv.Trajectory(trajectory
-    ).add_artist(fig)
+pv.Trajectory(trajectory).add_artist(fig)
 
 fig.view_init()
 fig.show()

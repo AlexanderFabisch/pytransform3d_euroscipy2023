@@ -81,14 +81,25 @@ DFKI GmbH, Robotics Innovation Center
 \end{center}
 \end{frame}
 
-\begin{frame}{Features of pytransform3d}
+\begin{frame}{Overview}
 \begin{itemize}
-\item \textbf{operations} for most common representations of rotation and translation
-\item \textbf{conversions} between representations
-\item clear documentation of \textbf{conventions}
-\item coupling with \textbf{matplotlib} for quick visualization
-\item the TransformManager organizes complex \textbf{graphs of transformations}
-\item a matplotlib-like interface to Open3D’s \textbf{visualizer}
+\item Introduction to 3D Rigid Transformations
+\item Applications
+\begin{itemize}
+\item Imitation Learning
+\item Concatenation of Uncertain Transforms
+\item Transfer of Motions to Robotic Hands
+\item Collision Detection
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{pytransform3d}
+\begin{itemize}
+\item git:\\{\small \url{https://github.com/dfki-ric/pytransform3d}}
+\item documentation:\\{\small \url{https://dfki-ric.github.io/pytransform3d}}
+\item citation:\\
+\textcite{Fabisch2019}. \textbf{pytransform3d: 3D Transformations for Python}. Journal of Open Source Software, 4(33), 1159.
 \end{itemize}
 \end{frame}
 
@@ -111,6 +122,13 @@ A \textit{coordinate reference} \textbf{frame} in 3D Euclidean space is defined 
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
 We will use RGB lines to indicate basis vectors.
 \end{beamercolorbox}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Large
+Application: Imitation Learning
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Imitation Learning}
@@ -216,6 +234,13 @@ fig.show()
 \movie[loop,autostart,poster,width=150pt]
 {\makebox(200,200){}}
 {videos/dual_arm.mp4}}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Large
+Application: Concatenation of Uncertain Transforms
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
@@ -330,6 +355,13 @@ T_est, cov_est = pu.concat_globally_uncertain_transforms(
 {videos/prob_robot_kin.mp4}}%
 \end{frame}
 
+\begin{frame}
+\begin{center}
+\Large
+Application: Transfer of Motions to Robotic Hand
+\end{center}
+\end{frame}
+
 \begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
 \begin{columns}
 \begin{column}{0.4\textwidth}
@@ -409,6 +441,13 @@ tm.write_png(graph_filename)
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+\begin{center}
+\Large
+Application: Collision Detection
+\end{center}
+\end{frame}
+
 \begin{frame}{Collision Detection}
 \makebox(305,185){
 \movie[loop,autostart,poster,width=160pt]
@@ -444,12 +483,14 @@ robot_bvh.fill_tree_with_colliders(robot_tree)
 {\footnotesize Library: \url{https://github.com/AlexanderFabisch/distance3d}}
 \end{frame}
 
-\begin{frame}{pytransform3d}
+\begin{frame}{Features of pytransform3d}
 \begin{itemize}
-\item git:\\{\small \url{https://github.com/dfki-ric/pytransform3d}}
-\item documentation:\\{\small \url{https://dfki-ric.github.io/pytransform3d}}
-\item citation:\\
-\textcite{Fabisch2019}. \textbf{pytransform3d: 3D Transformations for Python}. Journal of Open Source Software, 4(33), 1159.
+\item \textbf{operations} for most common representations of rotation and translation
+\item \textbf{conversions} between representations
+\item clear documentation of \textbf{conventions}
+\item coupling with \textbf{matplotlib} for quick visualization
+\item the TransformManager organizes complex \textbf{graphs of transformations}
+\item a matplotlib-like interface to Open3D’s \textbf{visualizer}
 \end{itemize}
 \end{frame}
 

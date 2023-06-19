@@ -146,21 +146,24 @@ Application: Imitation Learning
 \end{frame}
 
 \begin{frame}[fragile]{Imitation Learning}
+\textbf{Given:} one or more solutions to a problem
+
 \begin{columns}
 \begin{column}{0.43\textwidth}
 \makebox(150,200){
-\movie[loop,autostart,poster,width=148pt]
-{\makebox(148,165){}}
+\movie[autostart,poster,width=148pt]
+{\includegraphics[width=148pt]{images/movement_primitives_cart_dmp_ur5}
+}
 {videos/movement_primitive.mp4}}
 \end{column}
 \begin{column}{0.55\textwidth}
 \begin{itemize}
-\item Given: one or more demonstrated solutions to a problem (trajectory)
 \item How can we represent it?
 \item In particular: orientation
 \end{itemize}
 \end{column}
 \end{columns}
+
 {\footnotesize Library:
 \url{https://github.com/dfki-ric/movement_primitives}}
 \end{frame}
@@ -183,7 +186,7 @@ Application: Imitation Learning
 \includegraphics[width=\textwidth]{images/movement_primitives_cart_dmp_ur5}
 \end{column}
 \begin{column}{0.7\textwidth}
-Common problems
+Problems
 \begin{itemize}
 \item Rotation matrices have 6 constraints that are not easy to enforce
 \item Minimal representations $\in \mathbb{R}^3$ have singularities

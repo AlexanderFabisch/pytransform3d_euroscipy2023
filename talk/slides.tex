@@ -1,5 +1,5 @@
 \pdfminorversion=7
-\documentclass[14pt]{beamer}
+\documentclass[14pt,aspectratio=169]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -251,22 +251,34 @@ Application: Concatenation of Uncertain Transforms
 \end{frame}
 
 \begin{frame}[fragile]{Probabilistic Robot Kinematics}
+\begin{center}
 \makebox(224.3,167.5){
 \movie[loop,autostart,poster,width=224.3pt]
 {\makebox(224.3,167.5){}}
 {videos/prob_robot_kin.mp4}}
-
-\vskip 1em
+\end{center}
 
 \setbeamercolor{boxcolor}{bg=blue!10}
-\begin{beamercolorbox}[wd=\textwidth,sep=5pt]{boxcolor}
+\begin{beamercolorbox}[wd=0.9\textwidth,sep=5pt]{boxcolor}
 Examples $>$ 3D Visualizations $>$ Probabilistic Product of Exponentials
 \end{beamercolorbox}
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
-\begin{center}\includegraphics[width=0.4\textwidth]{images/state_estimation}\end{center}
-\vskip -0.4cm
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\makebox(159.33544,200){%
+\only<1>{%
+\includegraphics[width=\textwidth]{images/state_estimation}}
+\only<2>{%
+\includegraphics[width=\textwidth]{images/state_estimation_2}}
+\only<3>{%
+\includegraphics[width=\textwidth]{images/state_estimation_3}}
+\only<4>{%
+\includegraphics[width=\textwidth]{images/state_estimation_4}}
+}
+\end{column}
+\begin{column}{0.55\textwidth}
 \begin{itemize}
 \item Uncertainty of angular velocity about z-axis
 \item \textcolor{blue}{Blue}: Monte Carlo sampling of trajectories
@@ -274,6 +286,8 @@ Examples $>$ 3D Visualizations $>$ Probabilistic Product of Exponentials
 \item \textcolor{green}{Green}: Propagated uncertainty in \textit{exponential coordinates}
 (\textbf{banana distribution})
 \end{itemize}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{SE(3) (SE: special Euclidean group)}
@@ -342,13 +356,18 @@ Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T}
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
-\begin{center}\includegraphics[width=0.4\textwidth]{images/state_estimation}\end{center}
-\vskip -0.4cm
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\includegraphics[width=\textwidth]{images/state_estimation}
+\end{column}
+\begin{column}{0.65\textwidth}
 The \textbf{banana distribution} is Gaussian in exponential coordinates:
 \[
 \boldsymbol{T} = Exp(\mathcal{S}\theta) \overline{\boldsymbol{T}},\quad \textrm{with} \quad \mathcal{S}\theta \sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{\Sigma}_{6 \times 6}\right)
 \]
 \parencite{Long2012,Barfoot2014}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}

@@ -399,7 +399,7 @@ Application: Transfer of Motions to Robotic Hand
 \end{frame}
 
 \begin{frame}[fragile]{Robot Kinematics}
-\includegraphics[width=\textwidth]{images/embodiment_graph}
+\includegraphics[width=0.8\textwidth]{images/embodiment_graph}
 \begin{lstlisting}[language=Python]
 from pytransform3d.urdf import UrdfTransformManager
 tm = UrdfTransformManager()
@@ -440,11 +440,11 @@ ee2object = tm.get_transform(
 
 \begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
 \begin{columns}
-\begin{column}{0.4\textwidth}
+\begin{column}{0.3\textwidth}
 \includegraphics[width=\textwidth]{images/embodiment_record}
 \includegraphics[width=\textwidth]{images/embodiment_dataset}
 \end{column}
-\begin{column}{0.6\textwidth}
+\begin{column}{0.5\textwidth}
 \makebox(165,160){
 %\includegraphics[width=165pt]{images/embodiment_mia}%
 \movie[loop,autostart,poster,width=165pt]
@@ -463,7 +463,7 @@ Application: Collision Detection
 \end{frame}
 
 \begin{frame}{Collision Detection}
-\makebox(305,185){
+\makebox(350,185){
 \movie[loop,autostart,poster,width=160pt]
 {\makebox(160,185){}}
 {videos/collision_detection.mp4}}

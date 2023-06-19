@@ -315,44 +315,47 @@ SE(3) = \biggl\{ \boldsymbol{T} = \left(
 
 \[
 \left( \begin{array}{cc}
-    \boldsymbol R & \boldsymbol t\\
+    \textcolor{blue}{\boldsymbol{R}} & \textcolor{orange}{\boldsymbol{t}}\\
     \boldsymbol 0 & 1\\
 \end{array} \right)
 =
 \left(
 \begin{matrix}
-r_{11} & r_{12} & r_{13} & t_1\\
-r_{21} & r_{22} & r_{23} & t_2\\
-r_{31} & r_{32} & r_{33} & t_3\\
+\textcolor{blue}{r_{11}} & \textcolor{blue}{r_{12}} & \textcolor{blue}{r_{13}} & \textcolor{orange}{t_1}\\
+\textcolor{blue}{r_{21}} & \textcolor{blue}{r_{22}} & \textcolor{blue}{r_{23}} & \textcolor{orange}{t_2}\\
+\textcolor{blue}{r_{31}} & \textcolor{blue}{r_{32}} & \textcolor{blue}{r_{33}} & \textcolor{orange}{t_3}\\
 0 & 0 & 0 & 1\\
 \end{matrix}
 \right)
 \]
+
+\vskip 1em
+
+\begin{center}How should we define a probability distribution in $SE(3)$?\end{center}
 \end{frame}
 
 \begin{frame}{Exponential Coordinates}
+\begin{columns}
+\begin{column}{0.55\textwidth}
+\includegraphics{images/screw_axis}
+
+\vskip 2em
+
+Screw axis: $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \times \hat{\boldsymbol{s}} + h \hat{\boldsymbol{s}}\end{array} \right] = \textcolor{red}{\mathcal{S}} \in \mathbb{R}^6$
+\end{column}
+\pause
+\begin{column}{0.45\textwidth}
 \setbeamercolor{boxcolor}{bg=blue!10}
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
-Screw axis: $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \times \hat{\boldsymbol{s}} + h \hat{\boldsymbol{s}}\end{array} \right] = \textcolor{red}{\mathcal{S}} \in \mathbb{R}^6$
-\end{beamercolorbox}
-
-\vfill
-
-\hfill\includegraphics{images/screw_axis}
-
-\vfill
-
-\begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
 Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T}
-% =
-% \left( \begin{array}{cc}
-% \boldsymbol R & \boldsymbol t\\
-% \boldsymbol 0 & 1\\
-% \end{array} \right)
 \in SO(3)$
 \end{beamercolorbox}
 
+\vskip 1em
+
 \parencite{Lynch2017}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}

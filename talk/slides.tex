@@ -376,46 +376,22 @@ Application: Transfer of Motions to Robotic Hand
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
-\begin{columns}
-\begin{column}{0.4\textwidth}
-\includegraphics[width=\textwidth]{images/embodiment_record}
-\includegraphics[width=\textwidth]{images/embodiment_dataset}
-\end{column}
-\begin{column}{0.6\textwidth}
-\makebox(165,160){
-%\includegraphics[width=165pt]{images/embodiment_mia}%
-\movie[loop,autostart,poster,width=165pt]
-{\makebox(165,160){}}
-{videos/embodiment.mp4}}%
-\end{column}
-\end{columns}
-{\small \url{https://github.com/dfki-ric/hand_embodiment}, \parencite{Fabisch2022}}
-\end{frame}
-
-\begin{frame}[plain,fragile]{Modeling Transformations}
-\textbf{Mathematical notation:}
-$\boldsymbol{T}_{BA}$ for transformation \textit{from frame} \texttt{A} \textit{to frame}
-\texttt{B}. In concatenation, read from right to left:
-
-\[
-\boldsymbol{T}_{CB} \boldsymbol{T}_{BA} = \boldsymbol{T}_{C\cancel{B}} \boldsymbol{T}_{\cancel{B}A} = \boldsymbol{T}_{CA}.
-\]
-
-\vfill
-
-\textbf{In code} we should prefer the notation \texttt{A2B}
-for a transformation \textit{from frame} \texttt{A} \textit{to frame} \texttt{B}:
-
+\begin{frame}[fragile]{Robot Kinematics}
+\includegraphics[width=\textwidth]{images/embodiment_graph}
 \begin{lstlisting}[language=Python]
-from pytransform3d.transformations import concat
-A2B = ...  # transformation from frame A to frame B
-B2C = ...  # transformation from frame B to frame C
-A2C = concat(A2B, B2C)
+from pytransform3d.urdf import UrdfTransformManager
+tm = UrdfTransformManager()
+with open("robot.urdf", "r") as f:
+    robot_urdf = f.read()
+tm.load_urdf(robot_urdf)
+tm.write_png(graph_filename)
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}[plain,fragile]{Graphs of Transformations}
+Examples: kinematic structures of robots (and other articulated bodies),
+estimated states, trajectories
+
 \begin{columns}
 \begin{column}{0.4\textwidth}
 \includegraphics[width=\textwidth]{images/transform_graph}
@@ -438,21 +414,23 @@ ee2object = tm.get_transform(
 \end{lstlisting}
 \end{column}
 \end{columns}
-
-Examples: kinematic structures of robots (and other articulated bodies),
-estimated states, trajectories
 \end{frame}
 
-\begin{frame}[fragile]{Robot Kinematics}
-\includegraphics[width=\textwidth]{images/embodiment_graph}
-\begin{lstlisting}[language=Python]
-from pytransform3d.urdf import UrdfTransformManager
-tm = UrdfTransformManager()
-with open("robot.urdf", "r") as f:
-    robot_urdf = f.read()
-tm.load_urdf(robot_urdf)
-tm.write_png(graph_filename)
-\end{lstlisting}
+\begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\includegraphics[width=\textwidth]{images/embodiment_record}
+\includegraphics[width=\textwidth]{images/embodiment_dataset}
+\end{column}
+\begin{column}{0.6\textwidth}
+\makebox(165,160){
+%\includegraphics[width=165pt]{images/embodiment_mia}%
+\movie[loop,autostart,poster,width=165pt]
+{\makebox(165,160){}}
+{videos/embodiment.mp4}}%
+\end{column}
+\end{columns}
+{\small \url{https://github.com/dfki-ric/hand_embodiment}, \parencite{Fabisch2022}}
 \end{frame}
 
 \begin{frame}
@@ -494,7 +472,12 @@ robot_bvh = broad_phase.BoundingVolumeHierarchy(
     robot_tree, "robot_arm")
 robot_bvh.fill_tree_with_colliders(robot_tree)
 \end{lstlisting}
-{\footnotesize Library: \url{https://github.com/AlexanderFabisch/distance3d}}
+
+\setbeamercolor{boxcolor}{bg=blue!10}
+\begin{beamercolorbox}[wd=\textwidth,sep=5pt]{boxcolor}
+{\footnotesize Library:
+\url{https://github.com/AlexanderFabisch/distance3d}}
+\end{beamercolorbox}
 \end{frame}
 
 \begin{frame}{Funding}
@@ -506,14 +489,9 @@ framework program for Research and Innovation (project acronym: APRIL, project
 number: 870142).
 \end{frame}
 
-\begin{frame}
-\begin{center}
-\Large
-Backup
-\end{center}
-\end{frame}
-
 \begin{frame}{Features of pytransform3d}
+\includegraphics[width=\textwidth]{images/logo}
+
 \begin{itemize}
 \item \textbf{operations} for most common representations of rotation and translation
 \item \textbf{conversions} between representations
@@ -522,6 +500,35 @@ Backup
 \item the TransformManager organizes complex \textbf{graphs of transformations}
 \item a matplotlib-like interface to Open3D’s \textbf{visualizer}
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Large
+Backup
+\end{center}
+\end{frame}
+
+\begin{frame}[plain,fragile]{Modeling Transformations}
+\textbf{Mathematical notation:}
+$\boldsymbol{T}_{BA}$ for transformation \textit{from frame} \texttt{A} \textit{to frame}
+\texttt{B}. In concatenation, read from right to left:
+
+\[
+\boldsymbol{T}_{CB} \boldsymbol{T}_{BA} = \boldsymbol{T}_{C\cancel{B}} \boldsymbol{T}_{\cancel{B}A} = \boldsymbol{T}_{CA}.
+\]
+
+\vfill
+
+\textbf{In code} we should prefer the notation \texttt{A2B}
+for a transformation \textit{from frame} \texttt{A} \textit{to frame} \texttt{B}:
+
+\begin{lstlisting}[language=Python]
+from pytransform3d.transformations import concat
+A2B = ...  # transformation from frame A to frame B
+B2C = ...  # transformation from frame B to frame C
+A2C = concat(A2B, B2C)
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{Imitation Learning}

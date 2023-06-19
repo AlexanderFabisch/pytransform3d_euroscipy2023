@@ -26,6 +26,7 @@ maxbibnames=99]{biblatex}
 \usepackage{listings}
 \usepackage{cancel}
 \usepackage{multimedia} % videos
+\usepackage{layouts}
 
 \beamertemplatenavigationsymbolsempty
 \setbeamerfont{page number in head/foot}{size=\large}
@@ -91,12 +92,6 @@ DFKI GmbH, Robotics Innovation Center
 \end{beamercolorbox}
 
 \setbeamercolor{boxcolor}{bg=blue!10}
-%\begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
-%\textbf{Documentation}
-
-%{\small \url{https://dfki-ric.github.io/pytransform3d}}
-%\end{beamercolorbox}
-
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
 \textbf{Citation}
 
@@ -146,26 +141,27 @@ Application: Imitation Learning
 \end{frame}
 
 \begin{frame}[fragile]{Imitation Learning}
-\textbf{Given:} one or more solutions to a problem
-
 \begin{columns}
 \begin{column}{0.43\textwidth}
-\makebox(150,200){
-\movie[autostart,poster,width=148pt]
-{\includegraphics[width=148pt]{images/movement_primitives_cart_dmp_ur5}
-}
+\makebox(129.5,143.75){
+\movie[autostart,poster,width=129.5pt]
+{\includegraphics[width=129.5pt,height=143.75pt]{images/movement_primitives_cart_dmp_ur5}}
 {videos/movement_primitive.mp4}}
 \end{column}
 \begin{column}{0.55\textwidth}
-\begin{itemize}
-\item How can we represent it?
-\item In particular: orientation
-\end{itemize}
+\textbf{Given:} one or more solutions to a problem (trajectories)\\[1em]
+
+How can we represent orientation?
 \end{column}
 \end{columns}
 
+\vfill
+
+\setbeamercolor{boxcolor}{bg=blue!10}
+\begin{beamercolorbox}[wd=\textwidth,sep=5pt]{boxcolor}
 {\footnotesize Library:
 \url{https://github.com/dfki-ric/movement_primitives}}
+\end{beamercolorbox}
 \end{frame}
 
 \begin{frame}{SO(3) (SO: special orthogonal group)}
@@ -200,6 +196,7 @@ Problems
 We want to use quaternions \parencite{Ude2014}
 
 \vskip 1cm
+\pause
 
 Be careful:
 \begin{itemize}
@@ -215,7 +212,7 @@ $(x, y, z, \textcolor{red}{w})$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Visualizer}
+\begin{frame}[fragile]{Visualizer -- matplotlib-like interface}
 \begin{columns}
 \begin{column}{0.3\textwidth}
 \includegraphics[width=\textwidth]{images/movement_primitives_cart_dmp_ur5}

@@ -212,7 +212,7 @@ $(x, y, z, \textcolor{red}{w})$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Visualizer -- matplotlib-like interface}
+\begin{frame}[fragile]{Visualizer -- matplotlib-like interface to Open3D}
 \begin{columns}
 \begin{column}{0.3\textwidth}
 \includegraphics[width=\textwidth]{images/movement_primitives_cart_dmp_ur5}
@@ -302,38 +302,6 @@ Examples $>$ 3D Visualizations $>$ Probabilistic Product of Exponentials
 \end{center}
 \end{frame}
 
-\begin{frame}{Transformation Matrices}
-\[
-SE(3) = \biggl\{ \boldsymbol{T} = \left(
-\begin{array}{cc}
-\boldsymbol{R} & \boldsymbol{t}\\
-\boldsymbol{0} & 1
-\end{array}
-\right) \in \mathbb{R}^{4 \times 4}
-| \boldsymbol{R} \in SO(3), \boldsymbol{t} \in \mathbb{R}^3 \biggr\}
-\]
-
-\[
-\left( \begin{array}{cc}
-    \textcolor{blue}{\boldsymbol{R}} & \textcolor{orange}{\boldsymbol{t}}\\
-    \boldsymbol 0 & 1\\
-\end{array} \right)
-=
-\left(
-\begin{matrix}
-\textcolor{blue}{r_{11}} & \textcolor{blue}{r_{12}} & \textcolor{blue}{r_{13}} & \textcolor{orange}{t_1}\\
-\textcolor{blue}{r_{21}} & \textcolor{blue}{r_{22}} & \textcolor{blue}{r_{23}} & \textcolor{orange}{t_2}\\
-\textcolor{blue}{r_{31}} & \textcolor{blue}{r_{32}} & \textcolor{blue}{r_{33}} & \textcolor{orange}{t_3}\\
-0 & 0 & 0 & 1\\
-\end{matrix}
-\right)
-\]
-
-\vskip 1em
-
-\begin{center}How should we define a probability distribution in $SE(3)$?\end{center}
-\end{frame}
-
 \begin{frame}{Exponential Coordinates}
 \begin{columns}
 \begin{column}{0.55\textwidth}
@@ -348,7 +316,7 @@ Screw axis: $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \time
 \setbeamercolor{boxcolor}{bg=blue!10}
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
 Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T}
-\in SO(3)$
+\in SE(3)$
 \end{beamercolorbox}
 
 \vskip 1em
@@ -376,13 +344,13 @@ The \textbf{banana distribution} is Gaussian in exponential coordinates:
 \begin{frame}[fragile]{Concatenation of Uncertain Transforms}
 \begin{lstlisting}[language=Python]
 import pytransform3d.uncertainty as pu
-# estimated mean pose (transformation matrix)
+# estimated mean pose (transformation matrix, 4x4)
 T_est = ...
-# covariance in exponential coordinates
+# covariance in exponential coordinates (6x6)
 cov_est = ...
-# mean offset (transformation matrix)
+# mean offset (transformation matrix, 4x4)
 T_vel = ...
-# covariance in exponential coordinates
+# covariance in exponential coordinates (6x6)
 cov_vel = ...
 
 T_est, cov_est = pu.concat_globally_uncertain_transforms(
@@ -529,6 +497,38 @@ number: 870142).
 \Large
 Backup
 \end{center}
+\end{frame}
+
+\begin{frame}{Transformation Matrices}
+\[
+SE(3) = \biggl\{ \boldsymbol{T} = \left(
+\begin{array}{cc}
+	\boldsymbol{R} & \boldsymbol{t}\\
+	\boldsymbol{0} & 1
+\end{array}
+\right) \in \mathbb{R}^{4 \times 4}
+| \boldsymbol{R} \in SO(3), \boldsymbol{t} \in \mathbb{R}^3 \biggr\}
+\]
+
+\[
+\left( \begin{array}{cc}
+	\textcolor{blue}{\boldsymbol{R}} & \textcolor{orange}{\boldsymbol{t}}\\
+	\boldsymbol 0 & 1\\
+\end{array} \right)
+=
+\left(
+\begin{matrix}
+	\textcolor{blue}{r_{11}} & \textcolor{blue}{r_{12}} & \textcolor{blue}{r_{13}} & \textcolor{orange}{t_1}\\
+	\textcolor{blue}{r_{21}} & \textcolor{blue}{r_{22}} & \textcolor{blue}{r_{23}} & \textcolor{orange}{t_2}\\
+	\textcolor{blue}{r_{31}} & \textcolor{blue}{r_{32}} & \textcolor{blue}{r_{33}} & \textcolor{orange}{t_3}\\
+	0 & 0 & 0 & 1\\
+\end{matrix}
+\right)
+\]
+
+\vskip 1em
+
+\begin{center}How should we define a probability distribution in $SE(3)$?\end{center}
 \end{frame}
 
 \begin{frame}[plain,fragile]{Modeling Transformations}

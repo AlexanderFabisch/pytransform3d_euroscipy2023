@@ -104,9 +104,9 @@ DFKI GmbH, Robotics Innovation Center
 \item Introduction to 3D Rigid Transformations
 \item Applications
 \begin{itemize}
+\item Transfer of Motions to Robotic Hands
 \item Imitation Learning
 \item Concatenation of Uncertain Transforms
-\item Transfer of Motions to Robotic Hands
 \item Collision Detection
 \end{itemize}
 \end{itemize}
@@ -131,6 +131,69 @@ A \textit{coordinate reference} \textbf{frame} in 3D Euclidean space is defined 
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
 We will use RGB lines to indicate basis vectors.
 \end{beamercolorbox}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+	\Large
+	Application: Motion Transfer to Robotic Hands
+\end{center}
+\end{frame}
+
+\begin{frame}[plain,fragile]{Graphs of Transformations}
+Examples: kinematic structures of robots (and other articulated bodies),
+estimated states, trajectories
+
+\vskip 1em
+
+\begin{columns}
+\begin{column}{0.34\textwidth}
+\includegraphics[width=\textwidth]{images/transform_graph}
+\end{column}
+\begin{column}{0.66\textwidth}
+\begin{lstlisting}[language=Python]
+from pytransform3d.transform_manager import TransformManager
+
+
+tm = TransformManager()
+tm.add_transform("end-effector", "robot", ee2robot)
+tm.add_transform("object", "camera", object2cam)
+tm.add_transform("camera", "robot", cam2robot)
+
+ee2object = tm.get_transform(
+    "end-effector", "object")
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Robot Kinematics}
+\includegraphics[width=0.8\textwidth]{images/embodiment_graph}
+\begin{lstlisting}[language=Python]
+from pytransform3d.urdf import UrdfTransformManager
+tm = UrdfTransformManager()
+with open("robot.urdf", "r") as f:
+    robot_urdf = f.read()
+tm.load_urdf(robot_urdf)
+tm.write_png(graph_filename)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
+\begin{columns}
+	\begin{column}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{images/embodiment_record}
+		\includegraphics[width=\textwidth]{images/embodiment_dataset}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\makebox(165,160){
+			%\includegraphics[width=165pt]{images/embodiment_mia}%
+			\movie[loop,autostart,poster,width=165pt]
+			{\makebox(165,160){}}
+			{videos/embodiment.mp4}}%
+	\end{column}
+\end{columns}
+{\small \url{https://github.com/dfki-ric/hand_embodiment} \parencite{Fabisch2022}}
 \end{frame}
 
 \begin{frame}
@@ -357,70 +420,6 @@ T_est, cov_est = pu.concat_globally_uncertain_transforms(
         T_est, cov_est,
         T_vel, cov_vel)
 \end{lstlisting}
-\end{frame}
-
-\begin{frame}
-\begin{center}
-\Large
-Application: Transfer of Motions to Robotic Hand
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Robot Kinematics}
-\includegraphics[width=0.8\textwidth]{images/embodiment_graph}
-\begin{lstlisting}[language=Python]
-from pytransform3d.urdf import UrdfTransformManager
-tm = UrdfTransformManager()
-with open("robot.urdf", "r") as f:
-    robot_urdf = f.read()
-tm.load_urdf(robot_urdf)
-tm.write_png(graph_filename)
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[plain,fragile]{Graphs of Transformations}
-Examples: kinematic structures of robots (and other articulated bodies),
-estimated states, trajectories
-
-\begin{columns}
-\begin{column}{0.4\textwidth}
-\includegraphics[width=\textwidth]{images/transform_graph}
-\end{column}
-\begin{column}{0.6\textwidth}
-\begin{lstlisting}[language=Python]
-from pytransform3d.transform_manager import TransformManager
-
-
-tm = TransformManager()
-tm.add_transform(
-    "end-effector", "robot", ee2robot)
-tm.add_transform(
-    "camera", "robot", cam2robot)
-tm.add_transform(
-    "object", "camera", object2cam)
-
-ee2object = tm.get_transform(
-    "end-effector", "object")
-\end{lstlisting}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
-\begin{columns}
-\begin{column}{0.3\textwidth}
-\includegraphics[width=\textwidth]{images/embodiment_record}
-\includegraphics[width=\textwidth]{images/embodiment_dataset}
-\end{column}
-\begin{column}{0.5\textwidth}
-\makebox(165,160){
-%\includegraphics[width=165pt]{images/embodiment_mia}%
-\movie[loop,autostart,poster,width=165pt]
-{\makebox(165,160){}}
-{videos/embodiment.mp4}}%
-\end{column}
-\end{columns}
-{\small \url{https://github.com/dfki-ric/hand_embodiment}, \parencite{Fabisch2022}}
 \end{frame}
 
 \begin{frame}

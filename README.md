@@ -1,6 +1,6 @@
 # Transformations in Three Dimensions
 
-(Proposal title)
+[Talk](https://pretalx.com/euroscipy-2023/talk/TVJEAD/)
 
 **Session type:** Talk (15 minutes)
 
@@ -73,11 +73,4 @@ examples from robotics for illustration, for example,
 * state estimation - estimation of a robot's location and its uncertainty
 
 There are several pitfalls that we will discuss as well.
-
-
-## Notes
-
-*These notes are meant for the organiser and won't be made public.*
-
---
 

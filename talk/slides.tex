@@ -112,12 +112,31 @@ DFKI GmbH, Robotics Innovation Center
 %\end{itemize}
 %\end{frame}
 
-\begin{frame}
-\includegraphics[width=\textwidth]{images/introduction}
+\begin{frame}{Introduction to 3D Rigid Transformations}
+\begin{tabular}{lllll}
+\toprule
+& Term & & Displacement & Representation\\
+\midrule
+\includegraphics[width=1cm]{images/intro_position} &
+position &
+\includegraphics[width=1cm]{images/intro_translation}
+& translation & $\mathbb{R}^3$\\
+\midrule
+\includegraphics[width=1cm]{images/intro_frame} &
+orientation &
+\includegraphics[width=1cm]{images/intro_rotation}
+& rotation & $SO(3)$\\
+\midrule
+& pose & & rigid transformation & $SE(3)$\\
+\bottomrule
+\end{tabular}
 \end{frame}
 
 \begin{frame}{Frames}
-A \textit{coordinate reference} \textbf{frame} in 3D Euclidean space is defined by an origin (position) and 3 orthogonal basis vectors (orientation) and it is attached to a rigid body.
+\begin{itemize}
+\item A \textit{coordinate reference} \textbf{frame} is defined by an origin (position) and orientation.
+\item It is attached to a rigid body.
+\end{itemize}
 
 \vfill
 

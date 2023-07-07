@@ -129,19 +129,17 @@ DFKI GmbH, Robotics Innovation Center
 \begin{frame}{Introduction to 3D Rigid Transformations}
 \begin{tabular}{lllll}
 \toprule
-& Term & & Displacement & Representation\\
+Representation & Term & & \only<2>{Displacement} & \\
 \midrule
-\includegraphics[width=1cm]{images/intro_position} &
-position &
-\includegraphics[width=1cm]{images/intro_translation}
-& translation & $\mathbb{R}^3$\\
+$\mathbb{R}^3$ &
+position & \includegraphics[height=1.3cm]{images/intro_position} &
+\only<2>{translation} & \only<2>{\includegraphics[height=1.3cm]{images/intro_translation}}\\
 \midrule
-\includegraphics[width=1cm]{images/intro_frame} &
-orientation &
-\includegraphics[width=1cm]{images/intro_rotation}
-& rotation & $SO(3)$\\
+$SO(3)$ &
+orientation & \includegraphics[height=1.3cm]{images/intro_frame} &
+\only<2>{rotation} & \only<2>{\includegraphics[height=1.3cm]{images/intro_rotation}}\\
 \midrule
-& pose & & rigid transformation & $SE(3)$\\
+$SE(3)$ & pose & & \only<2>{rigid transformation} & \\
 \bottomrule
 \end{tabular}
 \end{frame}
@@ -167,14 +165,7 @@ We will use RGB arrows to display frames.
 \end{beamercolorbox}
 \end{frame}
 
-\begin{frame}
-\begin{center}
-	\Large
-	Application: Motion Transfer to Robotic Hands
-\end{center}
-\end{frame}
-
-\begin{frame}[plain,fragile]{Graphs of Transformations}
+\begin{frame}[fragile]{Graphs of Transformations}
 Examples: kinematic structures of robots (and other articulated bodies),
 estimated states, trajectories
 
@@ -199,6 +190,13 @@ ee2object = tm.get_transform(
 \end{lstlisting}
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Large
+Application: Motion Transfer to Robotic Hands
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Robot Kinematics}

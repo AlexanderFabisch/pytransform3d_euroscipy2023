@@ -74,16 +74,16 @@ slide
 \textbf{Alexander Fabisch}\\
 DFKI GmbH, Robotics Innovation Center
 \end{beamercolorbox}
-
 \vfill
 \includegraphics[width=\textwidth]{images/transformation_modeling}
-\vfill
-\url{https://github.com/dfki-ric/pytransform3d}
 \end{center}
 \end{frame}
 
 \begin{frame}
 \includegraphics[width=\textwidth]{images/logo}
+
+\vfill
+
 \setbeamercolor{boxcolor}{bg=green!10}
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
 \textbf{git}
@@ -91,12 +91,12 @@ DFKI GmbH, Robotics Innovation Center
 \url{https://github.com/dfki-ric/pytransform3d}
 \end{beamercolorbox}
 
-\setbeamercolor{boxcolor}{bg=blue!10}
-\begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
-\textbf{Citation}
+%\setbeamercolor{boxcolor}{bg=blue!10}
+%\begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
+%\textbf{Citation}
 
-\textcite{Fabisch2019}. \textit{pytransform3d: 3D Transformations for Python}. Journal of Open Source Software, 4(33), 1159.
-\end{beamercolorbox}
+%\textcite{Fabisch2019}. \textit{pytransform3d: 3D Transformations for Python}. Journal of Open Source Software, 4(33), 1159.
+%\end{beamercolorbox}
 \end{frame}
 
 \begin{frame}{Why?}
@@ -480,6 +480,13 @@ Application: Collision Detection
 \end{frame}
 
 \begin{frame}[fragile]{Collision Detection}
+\setbeamercolor{boxcolor}{bg=gray!10}
+\begin{beamercolorbox}[wd=\textwidth,sep=5pt]{boxcolor}
+\centering
+{\footnotesize Library:
+\url{https://github.com/AlexanderFabisch/distance3d}}
+\end{beamercolorbox}
+
 \begin{lstlisting}[language=Python]
 from pytransform3d.urdf import UrdfTransformManager
 from distance3d import broad_phase
@@ -500,13 +507,6 @@ robot_bvh = broad_phase.BoundingVolumeHierarchy(
     robot_tree, "robot_arm")
 robot_bvh.fill_tree_with_colliders(robot_tree)
 \end{lstlisting}
-
-\setbeamercolor{boxcolor}{bg=gray!10}
-\begin{beamercolorbox}[wd=\textwidth,sep=5pt]{boxcolor}
-\centering
-{\footnotesize Library:
-\url{https://github.com/AlexanderFabisch/distance3d}}
-\end{beamercolorbox}
 \end{frame}
 
 \begin{frame}{Funding}

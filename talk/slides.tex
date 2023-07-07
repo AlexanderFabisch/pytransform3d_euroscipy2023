@@ -282,7 +282,7 @@ Problems
 \begin{itemize}
 \item Rotation matrices have 6 constraints that are not easy to enforce
 \item Minimal representations $\in \mathbb{R}^3$ have singularities
-\item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q = -q$
+\item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q \equiv -q$
 \end{itemize}
 \end{column}
 \end{columns}
@@ -296,7 +296,7 @@ We want to use quaternions \parencite{Ude2014}
 
 Be careful:
 \begin{itemize}
-\item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q = -q$
+\item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q \equiv -q$
 \begin{lstlisting}[language=Python]
 from pytransform3d.rotations import pick_closest_quaternion
 q1 = pick_closest_quaternion(q1, q2)

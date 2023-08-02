@@ -200,7 +200,6 @@ Application: Motion Transfer to Robotic Hands
 \end{frame}
 
 \begin{frame}[fragile]{Robot Kinematics}
-\includegraphics[width=0.8\textwidth]{images/embodiment_graph}
 \begin{lstlisting}[language=Python]
 from pytransform3d.urdf import UrdfTransformManager
 tm = UrdfTransformManager()
@@ -209,6 +208,7 @@ with open("robot.urdf", "r") as f:
 tm.load_urdf(robot_urdf)
 tm.write_png(graph_filename)
 \end{lstlisting}
+\includegraphics[width=0.8\textwidth]{images/embodiment_graph}
 \end{frame}
 
 \begin{frame}[fragile]{Transfer of Motions to Robotic Hand}

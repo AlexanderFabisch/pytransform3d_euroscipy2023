@@ -213,16 +213,20 @@ tm.write_png(graph_filename)
 
 \begin{frame}[fragile]{Transfer of Motions to Robotic Hand}
 \begin{columns}
-	\begin{column}{0.3\textwidth}
-		\includegraphics[width=\textwidth]{images/embodiment_record}
-		\includegraphics[width=\textwidth]{images/embodiment_dataset}
-	\end{column}
 	\begin{column}{0.5\textwidth}
+	    \only<1>{\makebox(165,160){}}
+	    \only<2->{%
 		\makebox(165,160){
 			%\includegraphics[width=165pt]{images/embodiment_mia}%
 			\movie[loop,autostart,poster,width=165pt]
 			{\makebox(165,160){}}
 			{videos/embodiment.mp4}}%
+		}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+		\includegraphics[height=80pt]{images/embodiment_record}\\%
+		\only<1-2>{\makebox(80,100){}}%
+		\only<3>{\includegraphics[height=100pt]{images/embodiment_dataset}}
 	\end{column}
 \end{columns}
 \setbeamercolor{boxcolor}{bg=gray!10}
@@ -350,20 +354,6 @@ Application: Uncertain Transformations
 \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{Probabilistic Robot Kinematics}
-\begin{center}
-\makebox(224.3,167.5){
-\movie[loop,autostart,poster,width=224.3pt]
-{\makebox(224.3,167.5){}}
-{videos/prob_robot_kin.mp4}}
-\end{center}
-
-\setbeamercolor{boxcolor}{bg=blue!10}
-\begin{beamercolorbox}[wd=0.9\textwidth,sep=5pt]{boxcolor}
-Examples $>$ 3D Visualizations $>$ Probabilistic Product of Exponentials
-\end{beamercolorbox}
-\end{frame}
-
 \begin{frame}[fragile]{Concatenation of Uncertain Transformations}
 \begin{columns}
 \begin{column}{0.4\textwidth}
@@ -459,52 +449,18 @@ T_est, cov_est = pu.concat_globally_uncertain_transforms(
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]{Probabilistic Robot Kinematics}
 \begin{center}
-\Large
-Application: Collision Detection
+\makebox(224.3,167.5){
+\movie[loop,autostart,poster,width=224.3pt]
+{\makebox(224.3,167.5){}}
+{videos/prob_robot_kin.mp4}}
 \end{center}
-\end{frame}
 
-\begin{frame}{Collision Detection}
-\makebox(350,185){
-\movie[loop,autostart,poster,width=160pt]
-{\makebox(160,185){}}
-{videos/collision_detection.mp4}}
-\begin{itemize}
-\item Broad phase collision detection with AABBs
-\item GJK algorithm \parencite{Gilbert1988}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Collision Detection}
-\setbeamercolor{boxcolor}{bg=gray!10}
-\begin{beamercolorbox}[wd=\textwidth,sep=5pt]{boxcolor}
-\centering
-{\footnotesize Library:
-\url{https://github.com/AlexanderFabisch/distance3d}}
+\setbeamercolor{boxcolor}{bg=blue!10}
+\begin{beamercolorbox}[wd=0.9\textwidth,sep=5pt]{boxcolor}
+Examples $>$ 3D Visualizations $>$ Probabilistic Product of Exponentials
 \end{beamercolorbox}
-
-\begin{lstlisting}[language=Python]
-from pytransform3d.urdf import UrdfTransformManager
-from distance3d import broad_phase
-
-
-# Load graph of transformations
-robot_tree = UrdfTransformManager()
-with open(filename, "r") as f:
-    robot_urdf = f.read()
-robot_tree.load_urdf(robot_urdf)
-
-# Define configuration of robot
-for joint_name in ["joint%d" % i for i in range(1, 7)]:
-    robot_tree.set_joint(joint_name, 0.7)
-
-# Construct bounding volume hierarchy for broad phase
-robot_bvh = broad_phase.BoundingVolumeHierarchy(
-    robot_tree, "robot_arm")
-robot_bvh.fill_tree_with_colliders(robot_tree)
-\end{lstlisting}
 \end{frame}
 
 \begin{frame}{Funding}
@@ -588,6 +544,54 @@ from pytransform3d.transformations import concat
 A2B = ...  # transformation from frame A to frame B
 B2C = ...  # transformation from frame B to frame C
 A2C = concat(A2B, B2C)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Large
+Application: Collision Detection
+\end{center}
+\end{frame}
+
+\begin{frame}{Collision Detection}
+\makebox(350,185){
+\movie[loop,autostart,poster,width=160pt]
+{\makebox(160,185){}}
+{videos/collision_detection.mp4}}
+\begin{itemize}
+\item Broad phase collision detection with AABBs
+\item GJK algorithm \parencite{Gilbert1988}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Collision Detection}
+\setbeamercolor{boxcolor}{bg=gray!10}
+\begin{beamercolorbox}[wd=\textwidth,sep=5pt]{boxcolor}
+\centering
+{\footnotesize Library:
+\url{https://github.com/AlexanderFabisch/distance3d}}
+\end{beamercolorbox}
+
+\begin{lstlisting}[language=Python]
+from pytransform3d.urdf import UrdfTransformManager
+from distance3d import broad_phase
+
+
+# Load graph of transformations
+robot_tree = UrdfTransformManager()
+with open(filename, "r") as f:
+    robot_urdf = f.read()
+robot_tree.load_urdf(robot_urdf)
+
+# Define configuration of robot
+for joint_name in ["joint%d" % i for i in range(1, 7)]:
+    robot_tree.set_joint(joint_name, 0.7)
+
+# Construct bounding volume hierarchy for broad phase
+robot_bvh = broad_phase.BoundingVolumeHierarchy(
+    robot_tree, "robot_arm")
+robot_bvh.fill_tree_with_colliders(robot_tree)
 \end{lstlisting}
 \end{frame}
 

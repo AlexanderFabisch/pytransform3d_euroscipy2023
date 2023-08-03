@@ -192,14 +192,7 @@ ee2object = tm.get_transform(
 \end{columns}
 \end{frame}
 
-\begin{frame}
-\begin{center}
-\Large
-Application: Motion Transfer to Robotic Hands
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Robot Kinematics}
+\begin{frame}[fragile]{Robot Kinematics (Example: Robotic Hand)}
 \begin{lstlisting}[language=Python]
 from pytransform3d.urdf import UrdfTransformManager
 tm = UrdfTransformManager()
@@ -209,6 +202,13 @@ tm.load_urdf(robot_urdf)
 tm.write_png(graph_filename)
 \end{lstlisting}
 \includegraphics[width=0.8\textwidth]{images/embodiment_graph}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Large
+Application: Motion Transfer to Robotic Hands
+\end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Transfer of Motions to Robotic Hand}

@@ -392,17 +392,19 @@ Application: Uncertain Transformations
 \end{center}
 \end{frame}
 
-\begin{frame}{Exponential Coordinates}
+\begin{frame}[fragile]{Exponential Coordinates (Screw Theory)}
 \begin{columns}
 \begin{column}{0.55\textwidth}
 \includegraphics{images/screw_axis}
+\pause
 
 \vskip 2em
 
 \begin{tabular}{rl}
 Angle: & $\textcolor{blue}{\theta} \in \mathbb{R}$\\
-&\\
 Screw axis: & $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \times \hat{\boldsymbol{s}} + h \hat{\boldsymbol{s}}\end{array} \right] = \textcolor{red}{\mathcal{S}} \in \mathbb{R}^6$\\
+&\\
+Exp. coord.: & $\textcolor{red}{\mathcal{S}} \textcolor{blue}{\theta} \in \mathbb{R}^6$\\
 \end{tabular}
 \end{column}
 \pause
@@ -412,6 +414,15 @@ Screw axis: & $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \ti
 Exponential map: $Exp(\textcolor{red}{\mathcal{S}}\textcolor{blue}{\theta}) = \boldsymbol{T}
 \in SE(3)$
 \end{beamercolorbox}
+\pause
+
+\vskip 1em
+
+\begin{lstlisting}[language=Python,basicstyle=\tiny]
+import pytransform3d.transformations as pt
+pt.transform_from_exponential_coordinates(
+    Stheta)
+\end{lstlisting}
 
 \vskip 1em
 

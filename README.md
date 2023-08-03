@@ -1,6 +1,6 @@
 # Transformations in Three Dimensions
 
-[Talk](https://pretalx.com/euroscipy-2023/talk/TVJEAD/)
+[Abstract](https://pretalx.com/euroscipy-2023/talk/TVJEAD/) [Slides](talk/snapshot.pdf)
 
 **Session type:** Talk (15 minutes)
 
@@ -23,9 +23,6 @@
 
 ## Abstract
 
-*Short Description (Compact description, used in schedule or social media)
-Please write between 200 and 1500 characters.*
-
 Rigid transformation in 3D are complicated due to the multitude of different
 conventions and because they often form complex graphs that are difficult to
 manage. In this talk I will give a brief introduction to the topic and present
@@ -36,9 +33,6 @@ discussed features, even though presented solutions are useful beyond robotics.
 
 
 ## Description
-
-*Please do NOT include any personal information. Will be published on our
-website. Please write between 400 and 50000 characters.*
 
 This talk focuses on rotation and translation, that is, rigid transformations,
 in three  dimensions.
@@ -73,4 +67,17 @@ examples from robotics for illustration, for example,
 * state estimation - estimation of a robot's location and its uncertainty
 
 There are several pitfalls that we will discuss as well.
+
+## Slides
+
+You can build the slides with texlive in the subdirectory `talk`:
+
+```bash
+pdflatex slides.tex
+biber slides
+pdflatex slides.tex
+```
+
+I recommend to use **Okular** to view the slides because I use the multimedia
+package to include videos.
 

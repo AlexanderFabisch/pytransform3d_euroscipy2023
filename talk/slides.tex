@@ -449,18 +449,21 @@ The \textbf{banana distribution} is Gaussian in exponential coordinates:
 \begin{frame}[fragile]{Concatenation of Uncertain Transformations}
 \begin{lstlisting}[language=Python]
 import pytransform3d.uncertainty as pu
-# estimated mean pose (transformation matrix, 4x4)
-T_est = ...
-# covariance in exponential coordinates (6x6)
-cov_est = ...
-# mean offset (transformation matrix, 4x4)
-T_vel = ...
-# covariance in exponential coordinates (6x6)
-cov_vel = ...
 
-T_est, cov_est = pu.concat_globally_uncertain_transforms(
-        T_est, cov_est,
-        T_vel, cov_vel)
+
+# estimated mean pose (transformation matrix, 4x4)
+T_estimated = ...
+# covariance in exponential coordinates (6x6)
+cov_estimated = ...
+
+# mean velocity (transformation matrix, 4x4)
+T_velocity = ...
+# covariance in exponential coordinates (6x6)
+cov_velocity = ...
+
+T_estimated, cov_estimated = pu.concat_globally_uncertain_transforms(
+        T_estimated, cov_estimated,
+        T_velocity, cov_velocity)
 \end{lstlisting}
 \end{frame}
 

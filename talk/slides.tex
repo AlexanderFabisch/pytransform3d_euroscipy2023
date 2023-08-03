@@ -399,13 +399,17 @@ Application: Uncertain Transformations
 
 \vskip 2em
 
-Screw axis: $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \times \hat{\boldsymbol{s}} + h \hat{\boldsymbol{s}}\end{array} \right] = \textcolor{red}{\mathcal{S}} \in \mathbb{R}^6$
+\begin{tabular}{rl}
+Angle: & $\textcolor{blue}{\theta} \in \mathbb{R}$\\
+&\\
+Screw axis: & $\left[ \begin{array}{c}\hat{\boldsymbol{s}} \\ \boldsymbol{q} \times \hat{\boldsymbol{s}} + h \hat{\boldsymbol{s}}\end{array} \right] = \textcolor{red}{\mathcal{S}} \in \mathbb{R}^6$\\
+\end{tabular}
 \end{column}
 \pause
 \begin{column}{0.45\textwidth}
 \setbeamercolor{boxcolor}{bg=blue!10}
 \begin{beamercolorbox}[wd=\textwidth,sep=1em]{boxcolor}
-Exponential map: $Exp(\textcolor{red}{\mathcal{S}\theta}) = \boldsymbol{T}
+Exponential map: $Exp(\textcolor{red}{\mathcal{S}}\textcolor{blue}{\theta}) = \boldsymbol{T}
 \in SE(3)$
 \end{beamercolorbox}
 

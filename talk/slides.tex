@@ -172,9 +172,6 @@ estimated states, trajectories
 \vskip 1em
 
 \begin{columns}
-\begin{column}{0.34\textwidth}
-\includegraphics[width=\textwidth]{images/transform_graph}
-\end{column}
 \begin{column}{0.66\textwidth}
 \begin{lstlisting}[language=Python]
 from pytransform3d.transform_manager import TransformManager
@@ -188,6 +185,9 @@ tm.add_transform("camera", "robot", cam2robot)
 ee2object = tm.get_transform(
     "end-effector", "object")
 \end{lstlisting}
+\end{column}
+\begin{column}{0.34\textwidth}
+\includegraphics[width=\textwidth]{images/transform_graph}
 \end{column}
 \end{columns}
 \end{frame}

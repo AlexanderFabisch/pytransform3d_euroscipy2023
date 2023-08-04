@@ -305,8 +305,8 @@ Be careful:
 \begin{itemize}
 \item Quaternions $q \in \mathbb{S}^3$ have an ambiguity: $q \equiv -q$
 \begin{lstlisting}[language=Python]
-from pytransform3d.rotations import pick_closest_quaternion
-q1 = pick_closest_quaternion(q1, q2)
+from pytransform3d.batch_rotations import smooth_quaternion_trajectory
+quaternions = smooth_quaternion_trajectory(quaternions)
 \end{lstlisting}
 \item 2 conventions: \textbf{Hamilton} vs. JPL\\\parencite{Sommer2018}
 \item 4 numbers, e.g., $(0, 1, 0, 0)$\\

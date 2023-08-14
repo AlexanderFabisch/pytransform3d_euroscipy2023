@@ -442,21 +442,6 @@ pt.transform_from_exponential_coordinates(
 \end{frame}
 
 \begin{frame}[fragile]{Concatenation of Uncertain Transformations}
-\begin{columns}
-\begin{column}{0.3\textwidth}
-\includegraphics[width=\textwidth]{images/state_estimation_4}
-\end{column}
-\begin{column}{0.65\textwidth}
-The \textbf{banana distribution} is Gaussian in exponential coordinates:
-\[
-\boldsymbol{T} = Exp(\mathcal{S}\theta) \overline{\boldsymbol{T}},\quad \textrm{with} \quad \mathcal{S}\theta \sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{\Sigma}_{6 \times 6}\right)
-\]
-\parencite{Long2012,Barfoot2014}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]{Concatenation of Uncertain Transformations}
 \begin{lstlisting}[language=Python]
 import pytransform3d.uncertainty as pu
 
@@ -475,6 +460,21 @@ T_estimated, cov_estimated = pu.concat_globally_uncertain_transforms(
         T_estimated, cov_estimated,
         T_velocity, cov_velocity)
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Concatenation of Uncertain Transformations}
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\includegraphics[width=\textwidth]{images/state_estimation_4}
+\end{column}
+\begin{column}{0.65\textwidth}
+The \textbf{banana distribution} is Gaussian in exponential coordinates:
+\[
+\boldsymbol{T} = Exp(\mathcal{S}\theta) \overline{\boldsymbol{T}},\quad \textrm{with} \quad \mathcal{S}\theta \sim \mathcal{N}\left(\boldsymbol{0}, \boldsymbol{\Sigma}_{6 \times 6}\right)
+\]
+\parencite{Long2012,Barfoot2014}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Probabilistic Robot Kinematics}

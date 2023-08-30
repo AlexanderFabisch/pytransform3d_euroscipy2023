@@ -1,6 +1,6 @@
 # Transformations in Three Dimensions
 
-[Abstract](https://pretalx.com/euroscipy-2023/talk/TVJEAD/) [Slides](talk/snapshot.pdf) [Video](https://youtu.be/lNorqFwivTE?si=dh-60g3ET76SMyRo)
+[Abstract](https://pretalx.com/euroscipy-2023/talk/TVJEAD/) - [Slides](talk/snapshot.pdf) - [Video](https://youtu.be/lNorqFwivTE?si=dh-60g3ET76SMyRo)
 
 **Session type:** Talk (15 minutes)
 
